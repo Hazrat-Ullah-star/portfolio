@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SectionWrapper from '../SectionWrapper';
 import Tilt from 'react-parallax-tilt';
 import { motion } from 'framer-motion';
@@ -21,7 +21,7 @@ L.Icon.Default.mergeOptions({
 
 const Contact = () => {
   const position = [32.2217, 70.3793]; // Coordinates for Tank, Pakistan
-
+  
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMsg, setStatusMsg] = useState('');
@@ -167,25 +167,25 @@ const Contact = () => {
         </div>
 
         <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} transitionSpeed={500} perspective={1000}>
-          <motion.div
-            className="map-container glass-panel"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: '100%', width: '100%', borderRadius: '15px' }}>
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker position={position}>
-                <Popup>
-                  Hazrat Ullah <br /> Tank, Pakistan
-                </Popup>
-              </Marker>
-            </MapContainer>
-          </motion.div>
+        <motion.div 
+          className="map-container glass-panel"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: '100%', width: '100%', borderRadius: '15px' }}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={position}>
+              <Popup>
+                Hazrat Ullah <br /> Tank, Pakistan
+              </Popup>
+            </Marker>
+          </MapContainer>
+        </motion.div>
         </Tilt>
       </div>
     </SectionWrapper>
